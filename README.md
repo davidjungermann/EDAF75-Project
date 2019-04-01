@@ -2,38 +2,25 @@
 
 This is the report for
 
- + Firstname Lastname, `stil_id`
- + ...
+ + David Jungermann, `dic15dju`
+ + Alfred Hirschfeld, `al0015hi-s`
+ + David Blomberg, `da3684bl-s`
 
 We solved this project on our own, except for:
 
  + The Peer-review meeting
- + ... describe any other help you've gotten ...
-
 
 ## ER-design
 
-The model is in the file [`er-model.png`](er-model.png):
+The model is in the file [`krusty_uml.png`](krusty_uml.png):
 
 <center>
-    <img src="er-model.png" width="100%">
+    <img src="krusty_uml.png" width="100%">
 </center>
-
-(The image above describes the model from lecture 4, you
-must replace the file '`er-model.png`' with an image of your
-own ER-model).
-
 
 ## Relations
 
-The ER-model above gives the following relations (neither
-[Markdown](https://docs.gitlab.com/ee/user/markdown.html)
-nor [HTML5](https://en.wikipedia.org/wiki/HTML5) handles
-underlining withtout resorting to
-[CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets),
-so we use bold face for primary keys, italicized face for
-foreign keys, and bold italicized face for attributes which
-are both primary keys and foreign keys):
+The ER-model above gives the following relations:
 
 + authors(**author_name**, nationality)
 + books(**isbn**, book_title, published_year, publisher)
@@ -41,34 +28,27 @@ are both primary keys and foreign keys):
 + copies(**copy_barcode**, _isbn_, _library_name_, shelf)
 + ...
 
-cookies(_cookie_id_, cookie_name)
-pallets(_pallet_nbr_, /_cookie_id_/, /_order_nbr_/, production_date, location, delivery_time, delivery_date, blocked)
-orders(_order_nbr_ , /_customer_id_/, delivery_time)
-order_sizes(/_cookie_id_/, /_order_nbr_/, pallet_amount)
-customers(_customer_id_, customer_name, address)
-material(_material_id_, material_name, amount, unit, last_delivery_date, last_delivery_amount)
-ingredients(/_cookie_id_/, /_material_id_/, amount)
-
-(this should be replaced with your own relations, of course,
-but use the same way of marking primary keys and foreign
-keys).
-
++ cookies(**cookie_name**)
++ pallets(**pallet_id**, **_cookie_name_**, **_order_nbr_**, production_date, location, delivery_time, delivery_date, blocked)
++ orders(**order_nbr**, **_customer_id_**, delivery_time)
++ order_sizes(**_cookie_name_**, **_order_nbr_**, pallet_amount)
++ customers(**customer_id**, customer_name, address)
++ material(**material_name**, material_amount, unit, last_delivery_date, last_delivery_amount)
+ingredients(**_cookie_name_**, **_material_id_**, ingredient_amount)
 
 ## Scripts to set up database
 
 The scripts used to set up and populate the database are in:
 
  + [`create-schema.sql`](create-schema.sql) (defines the tables), and
- + [`initial-data.sql`](initial-data.sql) (inserts data).
+ + [`initial.sql`](initial.sql) (inserts data).
 
 So, to create and initialize the database, we run:
 
 ```shell
-sqlite3 krusty-db.sqlite < create-schema.sql
-sqlite3 krusty-db.sqlite < initial-data.sql
+sqlite3 krusty.sqlite < create-schema.sql
+sqlite3 krusty.sqlite < initial.sql
 ```
-
-(or whatever you call your database file).
 
 ## How to compile and run the program
 
@@ -77,18 +57,4 @@ compile and run the program from the command line, such as:
 
 ```shell
 ./gradlew run
-```
-
-or
-
-```shell
-javac -d bin/ -cp src src/krusty/Main.java
-java -cp bin:sqlite-jdbc.jar krusty.Main
-```
-
-or, if you put your commands into a `Makefile`:
-
-```shell
-make compile
-make run
 ```
