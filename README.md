@@ -49,7 +49,7 @@ sqlite3 krusty.sqlite < initial.sql
 To run the REST-server:
 
 ```shell
-./gradlew run
+.\gradlew run
 ```
 
 To test the REST-server: 
