@@ -22,12 +22,6 @@ The model is in the file [`krusty_uml.png`](krusty_uml.png):
 
 The ER-model above gives the following relations:
 
-+ authors(**author_name**, nationality)
-+ books(**isbn**, book_title, published_year, publisher)
-+ authored_books(**_author_name_**, **_isbn_**)
-+ copies(**copy_barcode**, _isbn_, _library_name_, shelf)
-+ ...
-
 + cookies(**cookie_name**)
 + pallets(**pallet_id**, **_cookie_name_**, **_order_nbr_**, production_date, location, delivery_time, delivery_date, blocked)
 + orders(**order_nbr**, **_customer_id_**, delivery_time)
