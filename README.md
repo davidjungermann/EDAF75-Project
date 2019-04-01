@@ -46,9 +46,14 @@ sqlite3 krusty.sqlite < initial.sql
 
 ## How to compile and run the program
 
-This section should give a few simple commands to type to
-compile and run the program from the command line, such as:
+To run the REST-server:
 
 ```shell
 ./gradlew run
+```
+
+To test the REST-server: 
+
+```shell
+python check-krusty.py
 ```
